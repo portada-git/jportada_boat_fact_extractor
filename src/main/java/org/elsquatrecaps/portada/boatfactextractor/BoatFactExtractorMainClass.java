@@ -30,7 +30,7 @@ public class BoatFactExtractorMainClass {
         boatFactExtractor.init(config);
         File dir = (new File(config.getOriginDir())).getAbsoluteFile();
         try {
-            text = Files.readString(dir.listFiles()[0].toPath());
+            text = Files.readString(dir.listFiles()[1].toPath());
             List<NewsExtractedData> result = boatFactExtractor.extractFromText(text, "1855_11_09");
             GenericCsvFileFormatter csvf = new BoatFactCsvFormatter();
             csvf.format(result).toFile(config.getOutputFile());

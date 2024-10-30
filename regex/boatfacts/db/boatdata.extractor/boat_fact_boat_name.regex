@@ -1,2 +1,0 @@
-{##hyphen_proper_noun##}(?:\s+{##hyphen_proper_noun##})*
-[\w\-\.]+(?:s+[\w\-\.]+)*[, .;]{0,4}(?=de \d+)

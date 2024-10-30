@@ -3,8 +3,6 @@ package org.elsquatrecaps.autonewsextractor.dataextractor.calculators;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 import java.util.Date;
-import org.elsquatrecaps.autonewsextractor.dataextractor.calculators.DataExtractorCalculatorMarkerAnnotation;
-import org.elsquatrecaps.autonewsextractor.dataextractor.calculators.RegexCalculator;
 
 /**
  *

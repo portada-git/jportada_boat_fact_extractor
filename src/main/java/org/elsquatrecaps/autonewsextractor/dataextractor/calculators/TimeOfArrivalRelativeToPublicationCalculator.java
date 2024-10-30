@@ -1,7 +1,5 @@
 package org.elsquatrecaps.autonewsextractor.dataextractor.calculators;
 
-import org.elsquatrecaps.autonewsextractor.dataextractor.calculators.DataExtractorCalculatorMarkerAnnotation;
-import org.elsquatrecaps.autonewsextractor.dataextractor.calculators.RegexCalculator;
 import org.elsquatrecaps.autonewsextractor.tools.RegexBuilder;
 
 /**

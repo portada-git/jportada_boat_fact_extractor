@@ -1,12 +1,5 @@
 package org.elsquatrecaps.autonewsextractor.tools.formatter;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import org.elsquatrecaps.autonewsextractor.error.AutoNewsReaderRuntimeException;
 import org.elsquatrecaps.autonewsextractor.model.BoatFactData;
 import org.elsquatrecaps.autonewsextractor.model.MutableNewsExtractedData;
 

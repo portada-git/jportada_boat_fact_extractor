@@ -30,7 +30,10 @@ build/
 
 .mvn/
 mvn*
-test/
 *.csv
 .DS_Store
-
+/config/
+/regex/
+/resultats/
+/text_data_db/
+/text_data_sm/
