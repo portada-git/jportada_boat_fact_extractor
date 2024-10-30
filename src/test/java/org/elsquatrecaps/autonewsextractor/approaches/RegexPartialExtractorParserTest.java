@@ -56,8 +56,8 @@ public class RegexPartialExtractorParserTest {
     @BeforeAll
     public static void setUpClass() {
         String[] args ={
-//            "-oe",
-//            "a",
+            "-c",
+            "config/prop_db/init.properties"
         };
         configuration.parseArgumentsAndConfigure(args);    
         try{

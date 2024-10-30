@@ -32,6 +32,7 @@ build/
 mvn*
 *.csv
 .DS_Store
+config
 /config/
 /regex/
 /resultats/

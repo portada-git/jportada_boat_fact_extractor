@@ -33,8 +33,8 @@ public class RegexBuilderTest {
 //            "db.arca.txt",
 //            "-p",
 //            "db.boatfact.parser,db.boatcounter.parser",
-            "-oe",
-            "documentAI"
+            "-c",
+            "config/prop_db/init.properties"
         };
         configuration.parseArgumentsAndConfigure(args);
     }
