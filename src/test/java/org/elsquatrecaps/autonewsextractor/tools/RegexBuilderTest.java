@@ -34,7 +34,7 @@ public class RegexBuilderTest {
 //            "-p",
 //            "db.boatfact.parser,db.boatcounter.parser",
             "-c",
-            "config/prop_db/init.properties"
+            "config/conf_db/init.properties"
         };
         configuration.parseArgumentsAndConfigure(args);
     }
