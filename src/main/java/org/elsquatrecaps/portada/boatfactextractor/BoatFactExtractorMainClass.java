@@ -64,7 +64,7 @@ public class BoatFactExtractorMainClass {
     
     private void buildInformationUnitsCommand(String odir, AutoNewsExtractorConfiguration config){
         BoatFactInformationUnitBuilder builder = new BoatFactInformationUnitBuilder();
-        builder.init(config).init(config.getOutputFile());
+        builder.init(config).init(odir).joinFiles();
     }
     
     private void targetFragmentCutterCommand(String odir, AutoNewsExtractorConfiguration config){

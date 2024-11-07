@@ -53,7 +53,7 @@ public class BoatFactExtractorMainClassTest {
     @Test
     public void testMain() {
         System.out.println("main");
-        String[] args = {"extract", "-c", "config/conf_db/init.properties", "-d", "text_data_db", "-o", "resultats/dadesVaixells"};
+        String[] args = {"information_unit_test", "-c", "config/conf_db/init.properties", "-d", "text_data_db", "-o", "resultats/iu"};
         BoatFactExtractorMainClass.main(args);
         // TODO review the generated test code and remove the default call to fail.
     }

@@ -1,5 +1,6 @@
 package org.elsquatrecaps.portada.boatfactextractor;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -36,6 +37,10 @@ public class BoatFactInformationUnitBuilder {
             ext =  (dotIndex == -1) ? "" : oFileName.substring(dotIndex, oFileName.length());
             oFileName =  (dotIndex == -1) ? oFileName : oFileName.substring(0, dotIndex);
             try {
+                File dir = new File(outputDir);
+                if(!dir.exists()){
+                    dir.mkdirs();
+                }
                 Files.writeString(Paths.get(outputDir, String.format("%s_%s%s", oFileName, "informationUnit", ext)), text, StandardOpenOption.CREATE);
             } catch (IOException ex) {
                 System.out.println(ex);

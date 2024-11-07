@@ -28,6 +28,10 @@ public class BoatFactCutter {
     
     public BoatFactCutter init(String odir){
         outputDir = odir;
+        File dir = new File(outputDir);
+        if(!dir.exists()){
+            dir.mkdirs();
+        }        
         return this;
     }
     public void cutFiles(Integer id){
