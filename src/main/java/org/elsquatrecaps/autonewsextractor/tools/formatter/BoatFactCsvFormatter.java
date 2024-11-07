@@ -34,12 +34,12 @@ public class BoatFactCsvFormatter extends GenericCsvFileFormatter<MutableNewsExt
         stb.append(fieldSeparator);
         stb.append("\"");
         if(bf.hasPortOfCalls()){
-            stb.append(bf.getPortOfCalls().replaceAll("\"", "'"));
+            stb.append(bf.getPortOfCallList().replaceAll("\"", "'"));
         }
         stb.append("\"");
         stb.append(fieldSeparator);
         stb.append("\"");
-        stb.append(bf.getArrivalHarbor().replaceAll("\"", "'"));
+        stb.append(bf.getArrivalPort().replaceAll("\"", "'"));
         stb.append("\"");
         stb.append(fieldSeparator);
         stb.append("\"");
@@ -65,7 +65,7 @@ public class BoatFactCsvFormatter extends GenericCsvFileFormatter<MutableNewsExt
         stb.append(bf.getMasterRole().replaceAll("\"", "'"));
         stb.append(fieldSeparator);
         stb.append("\"");
-        stb.append(bf.getOtherInformation().replaceAll("\"", "'"));
+        stb.append(bf.getCargoInformationList().replaceAll("\"", "'"));
         stb.append("\"");
         stb.append(fieldSeparator);
         stb.append("\"");

@@ -5,100 +5,127 @@ package org.elsquatrecaps.autonewsextractor.model;
  * @author josep
  */
 public class BoatFactData extends MutableNewsExtractedData{
-
-    public BoatFactData() {
-        super();
-    }
-    
     public BoatFactData(MutableNewsExtractedData d) {
         super(d.getExtractedData());
     }
 
+    public String getFactType(){
+        return get(BoatFactFields.FACT_TYPE.toString());
+    }
     
-    /**
-     * @return the date
-     */
     public String getDepartureDate() {
-        return get("ship_departure_date");
+        return get(BoatFactFields.TRAVEL_DEPARTURE_DATE.toString());
     }
 
     public String getArrivalDate() {
-        return get("ship_arrival_date");
+        return get(BoatFactFields.TRAVEL_ARRIVAL_DATE.toString());
     }
     
     public String getVoyageDuration(){
-        return String.format("%s %s", get("ship_voyage_duration"), get("ship_voyage_duration_unit"));
+        return String.format("%s %s", 
+                get(BoatFactFields.TRAVEL_TIME_DURATION.toString()), 
+                get(BoatFactFields.TRAVEL_TIME_UNIT_DURATION.toString()));
+    }
+    
+    public String getVoyageDurationValue(){
+        return get(BoatFactFields.TRAVEL_TIME_DURATION.toString());
+    }
+    
+    public String getVoyageDurationUnit(){
+        return get(BoatFactFields.TRAVEL_TIME_UNIT_DURATION.toString());
     }
     
     public String getOrigin(){
-        return get("ship_origin");
+        return get(BoatFactFields.TRAVEL_DEPARTURE_PORT.toString());
     }
     
     
     public String getShipType() {
-        return get("ship_type");
+        return get(BoatFactFields.SHIP_TYPE.toString());
     }
 
     public String getShipName() {
-        return get("ship_name");
+        return get(BoatFactFields.SHIP_NAME.toString());
     }
 
     public String getShipTonnage() {
-        return String.format("%s %s", get("ship_tonnage"), get("ship_tonnage_unit"));
+        //return String.format("%s %s", get(BoatFactFields.SHIP_TONS), get("ship_tonnage_unit"));
+        return get(BoatFactFields.SHIP_TONS.toString());
     }
 
     public String getShipFlag() {
-        return get("ship_flag");
+        return get(BoatFactFields.SHIP_FLAG.toString());
     }
 
     public String getMasterName() {
-        return get("ship_master_name");
+        return get(BoatFactFields.SHIP_MASTER_NAME.toString());
     }
 
     public String getMasterRole() {
-        return get("ship_master_role");
+        return get(BoatFactFields.SHIP_MASTER_ROLE.toString());
     }
 
-    public String getOtherInformation() {
-        return get("ship_cargo");
+    public String getCargoInformationList() {
+        return get(BoatFactFields.SHIP_CARGO_LIST.toString());
     }
 
-    public String getArrivalHarbor() {
-        return get("ship_arrival_port");
+    public ShipCargoInfo getCargoInformation(int id) {
+        throw new UnsupportedOperationException();
+    }
+
+    public String getArrivalPort() {
+        return get(BoatFactFields.TRAVEL_ARRIVAL_PORT.toString());
     }
 
     public boolean hasPortOfCalls(){
-        return this.getExtractedData().has("ship_port_of_call_place");
+        return this.getExtractedData().has(BoatFactFields.TRAVEL_PORT_OF_CALL_LIST.toString());
     }
     
-    public String getPortOfCalls() {
+    public String getPortOfCallList() {
         String ret = "";
         if(this.hasPortOfCalls()){
-            ret = this.get("ship_port_of_call_place");
+            ret = this.get(BoatFactFields.TRAVEL_PORT_OF_CALL_LIST.toString());
         }        
         return ret;
-
-//        StringBuilder stb = new StringBuilder();
-//        if(this.hasPortOfCalls()){
-//            stb.append(this.getExtractedData().getJSONArray("ship_port_of_call_place").join(", "));
-//        }        
-//        return stb.toString();
     }
     
-    public String getPortOfCall(int i){
-        String ret = null;
-        String[] ports = this.get("ship_port_of_call_place").split(",");
-        if(0<=i && ports.length>0){
-            ret = ports[i];
-        }
-        return ret;
-        
-//        String ret = null;
-//        if(0<i && hasPortOfCalls() && i<this.getExtractedData().getJSONArray("ship_port_of_call_place").length()){
-//            ret = this.getExtractedData().getJSONArray("ship_port_of_call_place").getString(i);
-//        }
-//        return ret;
-    }   
+    public TravelPortOfCall getPortOfCall(int i){
+        throw new UnsupportedOperationException();
+    }
+    
+    public String getArrivalMoment(){
+        return String.format("%s %s", 
+                get(BoatFactFields.TRAVEL_ARRIVAL_MOMENT_VALUE.toString()), 
+                get(BoatFactFields.TRAVEL_ARRIVAL_MOMENT_UNIT.toString()));
+    }
+
+    public String getArrivalMomentValue(){
+        return get(BoatFactFields.TRAVEL_ARRIVAL_MOMENT_VALUE.toString());
+    }
+
+    public String getArrivalMomentUnit(){
+        return get(BoatFactFields.TRAVEL_ARRIVAL_MOMENT_UNIT.toString());
+    }
+    
+    public String getShipAgent(){
+        return get(BoatFactFields.SHIP_AGENT.toString());
+    }
+
+    public String getShipCrew(){
+        return get(BoatFactFields.SHIP_CREW.toString());
+    }
+
+    public String getShipIsInQuarantine(){
+        return get(BoatFactFields.SHIP_NEED_QUARANTINE.toString());
+    }
+
+    public String getShipHasForcedArrival(){
+        return get(BoatFactFields.SHIP_FORCED_ARRIVAL.toString());
+    }
+    
+//    public String getAllDataAsJson(){
+//        
+//    }
 
     @Override
     public String toString() {
@@ -111,10 +138,10 @@ public class BoatFactData extends MutableNewsExtractedData{
         stb.append(this.getOrigin());
         if(this.hasPortOfCalls()){
             stb.append(", route harbors: ");
-            stb.append(String.join(", ", this.getPortOfCalls()));
+            stb.append(String.join(", ", this.getPortOfCallList()));
         }
         stb.append(", arrival harbor: ");
-        stb.append(this.getArrivalHarbor());
+        stb.append(this.getArrivalPort());
         stb.append(", expected departure date: ");
         stb.append(this.getDepartureDate());
         stb.append(", expected arrival date: ");
@@ -137,7 +164,7 @@ public class BoatFactData extends MutableNewsExtractedData{
         stb.append(this.getMasterRole());
         stb.append("]");
         stb.append("\n other info: ");
-        stb.append(this.getOtherInformation());
+        stb.append(this.getCargoInformationList());
         stb.append("\n ]");      
         return stb.toString();    
     }

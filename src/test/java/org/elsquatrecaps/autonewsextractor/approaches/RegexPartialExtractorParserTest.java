@@ -12,9 +12,11 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.elsquatrecaps.autonewsextractor.dataextractor.parser.MainAutoNewsExtractorParser;
+import org.elsquatrecaps.autonewsextractor.model.BoatFactFields;
 import org.elsquatrecaps.autonewsextractor.model.ExtractedData;
 import org.elsquatrecaps.autonewsextractor.model.MutableNewsExtractedData;
 import org.elsquatrecaps.autonewsextractor.model.NewsExtractedData;
+import org.elsquatrecaps.autonewsextractor.model.PublicationInfo;
 import org.elsquatrecaps.autonewsextractor.tools.configuration.AutoNewsExtractorConfiguration;
 import org.elsquatrecaps.autonewsextractor.tools.formatter.BoatFactCsvFormatter;
 import org.elsquatrecaps.autonewsextractor.tools.formatter.JsonFileFormatterForExtractedData;
@@ -59,8 +61,8 @@ public class RegexPartialExtractorParserTest {
             "-c",
             "config/conf_db/init.properties"
         };
-        configuration.parseArgumentsAndConfigure(args);    
         try{
+            configuration.parseArgumentsAndConfigure(args);    
             String jsc = Files.readString(Paths.get(configuration.getParserConfigJsonFile()));
             jsonConfig = new JSONObject(jsc);
         } catch (IOException ex) {
@@ -122,8 +124,8 @@ public class RegexPartialExtractorParserTest {
         instance.init(configuration, 0);
         instance.init(jsonConfig.getJSONObject("boatdata.extractor").getJSONArray("config").getJSONObject(0).getJSONObject("configuration"));
         instance.init(jsonConfig.getJSONObject("boatdata.extractor").getJSONObject("constants"));
-        MutableNewsExtractedData partialExtractedDataToCopy = instance.getDefaultData();
-        partialExtractedDataToCopy.setPublicationDate("1850-09-21");
+        MutableNewsExtractedData partialExtractedDataToCopy = instance.getDefaultData(
+                new PublicationInfo(BoatFactFields.getCurrentModelVersion(), "1850-09-21"));
         List<ExtractedData> result = instance.parseFromString(bonText, partialExtractedDataToCopy);
         System.out.println(result);
         assertEquals(5, result.size());
@@ -167,7 +169,8 @@ public class RegexPartialExtractorParserTest {
                 + "Se dirige al puerto el bergantin español Constante.";
         MainAutoNewsExtractorParser instance = new MainAutoNewsExtractorParser();
         instance.init(configuration);
-        List<NewsExtractedData> result = instance.parseFromString(bonText, "1855_11_09");
+        List<NewsExtractedData> result = instance.parseFromString(bonText, 0,
+                new PublicationInfo(BoatFactFields.getCurrentModelVersion(), "1855_11_09"));
         JsonFileFormatterForExtractedData ff = new JsonFileFormatterForExtractedData(result);
         System.out.println(ff.toString());
         BoatFactCsvFormatter csvf = new BoatFactCsvFormatter();

@@ -11,8 +11,8 @@ public class TimeOfArrivalRelativeToPublicationCalculator extends RegexCalculato
     public static final int ORIGINAL_TEXT=0;
     @Override
     public String calculate(String[] params) {
-        String ret="y";
         String when = params[ORIGINAL_TEXT].replace('\n', ' ');
+        String ret=when;
         if(when.matches(RegexBuilder.getInstance(this.getBasePath(), this.getSearchPath(), this.getVariant()).getStrPatternFromFile("contains_anteayer"))){
             ret = "by";
         }else if(when.matches(RegexBuilder.getInstance(this.getBasePath(), this.getSearchPath(), this.getVariant()).getStrPatternFromFile("contains_ayer"))){
