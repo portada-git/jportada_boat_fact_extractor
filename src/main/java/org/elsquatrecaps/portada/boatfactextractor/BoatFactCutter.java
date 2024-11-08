@@ -34,7 +34,7 @@ public class BoatFactCutter {
         }        
         return this;
     }
-    public void cutFiles(Integer id){
+    public void cutFiles(int id){
         String text;
         String cutText;
         TargetFragmentCutterProxyClass proxy = TargetFragmentCutterProxyClass.getInstance(configuration.getFragmentBreakerApproach(), configuration);
@@ -55,7 +55,7 @@ public class BoatFactCutter {
                 int dotIndex = file.getName().lastIndexOf('.');
                 ext =  (dotIndex == -1) ? "" : oFileName.substring(dotIndex, oFileName.length());
                 oFileName =  (dotIndex == -1) ? oFileName : oFileName.substring(0, dotIndex);
-                Files.writeString(Path.of(outputDir, String.format("%s_%s%s", oFileName, configuration.getParseModel()[id]), ext), text, StandardOpenOption.CREATE);
+                Files.writeString(Path.of(outputDir, String.format("%s_%s%s", oFileName, configuration.getParseModel()[id], ext)), text, StandardOpenOption.CREATE);
             }
         } catch (RuntimeException | IOException ex) {
             throw new AutoNewsRuntimeException(ex);

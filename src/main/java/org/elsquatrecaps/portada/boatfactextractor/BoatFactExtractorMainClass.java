@@ -17,7 +17,11 @@ import org.elsquatrecaps.autonewsextractor.tools.formatter.JsonFileFormatterForE
 public class BoatFactExtractorMainClass {
 
     public static void main(String[] args) {
-       String[] configArgs = Arrays.copyOfRange(args, 1, args.length);
+//       String[] configArgs = Arrays.copyOfRange(args, 1, args.length);
+       String[] configArgs = new String[args.length-1];
+       for(int i=1; i<args.length; i++){
+           configArgs[i-1]=args[i].trim();
+       }
        AutoNewsExtractorConfiguration config = configFromArgs(configArgs);
        BoatFactExtractorMainClass prg = new BoatFactExtractorMainClass();
         switch (args[0]) {
