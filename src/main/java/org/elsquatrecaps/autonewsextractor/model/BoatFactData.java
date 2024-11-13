@@ -94,19 +94,9 @@ public class BoatFactData extends MutableNewsExtractedData{
     }
     
     public String getArrivalMoment(){
-        return String.format("%s %s", 
-                get(BoatFactFields.TRAVEL_ARRIVAL_MOMENT_VALUE.toString()), 
-                get(BoatFactFields.TRAVEL_ARRIVAL_MOMENT_UNIT.toString()));
-    }
-
-    public String getArrivalMomentValue(){
         return get(BoatFactFields.TRAVEL_ARRIVAL_MOMENT_VALUE.toString());
     }
 
-    public String getArrivalMomentUnit(){
-        return get(BoatFactFields.TRAVEL_ARRIVAL_MOMENT_UNIT.toString());
-    }
-    
     public String getShipAgent(){
         return get(BoatFactFields.SHIP_AGENT.toString());
     }

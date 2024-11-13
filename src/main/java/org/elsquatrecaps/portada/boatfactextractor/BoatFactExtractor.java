@@ -143,7 +143,7 @@ public class BoatFactExtractor {
                         message = String.format(
                             "ERROR IN A FIELD NAME: %s.\nPlease, revise the file and adapt it following the current version:\n%s", 
                             r.getLast(), 
-                            BoatFactFields.getVersionInfo());
+                            BoatFactFields.getChangeOfVersions());
                     }
                 }else if(compare>0){
                     //versión anterior, mostrar cambios de verisón i pedir adaptación
@@ -151,20 +151,20 @@ public class BoatFactExtractor {
                     message = String.format(
                             "The field version of the json config file is previous to current version (%s). Please, revise the file and adapt it following the current version:\n%s", 
                             BoatFactFields.getCurrentModelVersion(),
-                            BoatFactFields.getVersionInfo());
+                            BoatFactFields.getFieldInformation());
                 }else if(compare==Integer.MIN_VALUE){
                     //versión desconocida. Revisar la versión indicada en el fichero
                     isOk=false;
                     message = String.format(
                             "The field version of the json config file is unknown. Please, revise the file and adapt it following the current version:\n%s", 
-                            BoatFactFields.getVersionInfo());
+                            BoatFactFields.getFieldInformation());
                 }else{
                     //error versión config file > current! Revisar la versión indicada en el fichero
                     isOk=false;
                     message = String.format(
                             "The field version of the json config file is greater than the current version (%s). Please, revise the file and adapt it following the current version:\n%s", 
                             BoatFactFields.getCurrentModelVersion(),
-                            BoatFactFields.getVersionInfo());
+                            BoatFactFields.getFieldInformation());
                 }
             }            
         }catch (JSONException ex) {

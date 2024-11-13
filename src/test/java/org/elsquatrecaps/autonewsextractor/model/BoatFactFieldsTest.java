@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/UnitTests/JUnit4TestClass.java to edit this template
  */
-package org.elsquatrecaps.portada.boatfactextractor;
+package org.elsquatrecaps.autonewsextractor.model;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -14,20 +14,20 @@ import org.junit.Test;
  *
  * @author josep
  */
-public class BoatFactExtractorMainClassTest {
+public class BoatFactFieldsTest {
     
      public static void main(String[] args){
         setUpClass();
-        BoatFactExtractorMainClassTest test = new BoatFactExtractorMainClassTest();
+        BoatFactFieldsTest test = new BoatFactFieldsTest();
         
         test.setUp();
-        test.testMain();
+        test.testGetChangeOfVersions();
         test.tearDown();
                 
         tearDownClass();
     }
     
-    public BoatFactExtractorMainClassTest() {
+    public BoatFactFieldsTest() {
     }
     
     @BeforeClass
@@ -47,14 +47,14 @@ public class BoatFactExtractorMainClassTest {
     }
 
     /**
-     * Test of main method, of class BoatFactExtractorMainClass.
+     * Test of getChangeOfVersions method, of class BoatFactFields.
      */
     @Test
-    public void testMain() {
-        System.out.println("main");
-        String[] args = {"cut_test", "-c", "config/conf_db/init.properties", "-d", "resultats/iu", "-o", "resultats/cut"};
-        BoatFactExtractorMainClass.main(args);
-        // TODO review the generated test code and remove the default call to fail.
+    public void testGetChangeOfVersions() {
+        System.out.println("getVersionInfo");
+        String result = BoatFactFields.getFieldInformation();
+        System.out.println("INFO");
+        System.out.println("____");
+        System.out.println(result);
     }
-    
 }
