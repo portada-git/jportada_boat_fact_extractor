@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import org.elsquatrecaps.autonewsextractor.error.AutoNewsRuntimeException;
+import org.elsquatrecaps.autonewsextractor.model.BoatFactFields;
 import org.elsquatrecaps.autonewsextractor.model.NewsExtractedData;
 import org.elsquatrecaps.autonewsextractor.tools.configuration.AutoNewsExtractorConfiguration;
 import org.elsquatrecaps.autonewsextractor.tools.formatter.JsonFileFormatterForExtractedData;
@@ -17,29 +18,44 @@ import org.elsquatrecaps.autonewsextractor.tools.formatter.JsonFileFormatterForE
 public class BoatFactExtractorMainClass {
 
     public static void main(String[] args) {
-//       String[] configArgs = Arrays.copyOfRange(args, 1, args.length);
+       BoatFactExtractorMainClass prg = new BoatFactExtractorMainClass();
        String[] configArgs = new String[args.length-1];
        for(int i=1; i<args.length; i++){
            configArgs[i-1]=args[i].trim();
        }
-       AutoNewsExtractorConfiguration config = configFromArgs(configArgs);
-       BoatFactExtractorMainClass prg = new BoatFactExtractorMainClass();
-        switch (args[0]) {
-            case "extract_test":
-                prg.extractOnlyCommand(config);
-                break;
-            case "cut_test":
-                prg.targetFragmentCutterCommand(config.getOutputFile(), config);
-                break;
-            case "information_unit_test":
-                prg.buildInformationUnitsCommand(config.getOutputFile(), config);
-                break;
-            case "extract":
-                prg.extract(config);
-                break;
-            default:
-                throw new AssertionError();
-        }
+       if(args[0].equalsIgnoreCase("field_info")){
+           String pars;
+           switch (configArgs.length) {
+               case 1:
+                   pars = configArgs[0];
+                   break;
+               case 2:
+                   pars = configArgs[1];
+                   break;               
+               default:
+                   //errror
+                   throw new AssertionError();
+           }
+           prg.printFieldInfo(pars);
+       }else{
+            AutoNewsExtractorConfiguration config = configFromArgs(configArgs);
+             switch (args[0].toLowerCase()) {
+                 case "extract_test":
+                     prg.extractOnlyCommand(config);
+                     break;
+                 case "cut_test":
+                     prg.targetFragmentCutterCommand(config.getOutputFile(), config);
+                     break;
+                 case "information_unit_test":
+                     prg.buildInformationUnitsCommand(config.getOutputFile(), config);
+                     break;
+                 case "extract":
+                     prg.extract(config);
+                     break;
+                 default:
+                     throw new AssertionError();
+            }
+       }
     }
     
     private static AutoNewsExtractorConfiguration configFromArgs(String[] args){
@@ -94,6 +110,31 @@ public class BoatFactExtractorMainClass {
             }                        
         } catch (AutoNewsRuntimeException ex) {
             System.out.println(String.format("Error: %s", ex.getMessage()));
+        }
+    }
+
+    private void printFieldInfo(String infoType) {
+        System.out.println("                 FIELD INFO                      ");
+        infoType = infoType.toUpperCase();
+        String sep = "";
+        if(infoType.indexOf('A')>-1){
+            System.out.println(BoatFactFields.getFieldInformation());
+        }else{
+            if(infoType.indexOf('V')>-1){
+                System.out.println("======================================================================");
+                System.out.print("CURRENT VERSION: ");
+                System.out.println(BoatFactFields.getCurrentModelVersion());
+                sep = "----------------------------------------------------------------------\n";
+            }
+            if(infoType.indexOf('D')>-1){
+                System.out.print(sep);
+                System.out.println(BoatFactFields.getFieldDespcription());
+                sep = "----------------------------------------------------------------------\n";
+            }
+            if(infoType.indexOf('C')>-1){
+                System.out.print(sep);
+                System.out.println(BoatFactFields.getChangeOfVersions());
+            }
         }
     }
 }

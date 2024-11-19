@@ -115,6 +115,10 @@ public enum BoatFactFields{
     
     public static String getFieldInformation(){
         StringBuilder sb = new StringBuilder();
+        sb.append("======================================================================\n");
+        sb.append(" CURRENT VERSION: ");
+        sb.append(getCurrentModelVersion());
+        sb.append("\n\n");
         sb.append(getFieldDespcription());
         sb.append("\n\n");
         sb.append(getChangeOfVersions());
@@ -123,7 +127,8 @@ public enum BoatFactFields{
     
     public static String getFieldDespcription(){
         StringBuilder sb = new StringBuilder();
-        String pre = "";
+        String pre = "----------------------------------------------------------------------\n";
+        sb.append("======================================================================\n");
         sb.append(" List of fildes and desciption for the current version\n");
         sb.append("======================================================================\n");
         sb.append("CURRENT NAME FIELD                 FIELD DESCRIPTION                  \n");
@@ -132,17 +137,20 @@ public enum BoatFactFields{
             sb.append(f.toString());                
             sb.append(":    ");
             sb.append(f.fieldDescription);                
-            pre = "----------------------------------------------------------------------\n\n";
-            sb.append("\n\n");
+//            pre = "----------------------------------------------------------------------\n\n";
+//            sb.append("\n\n");
+            sb.append("\n");
         }
         return sb.toString();
     }
     
     public static String getChangeOfVersions(){
         StringBuilder sb = new StringBuilder();
+        sb.append("======================================================================\n");
         sb.append(" List of changes made in each field throughout the different versions \n");
-        sb.append("----------------------------------------------------------------------\n");
+        sb.append("======================================================================\n");
         sb.append("CURRENT NAME FIELD         <=         PREVIOUS NAME FIELDS            \n");
+        sb.append("----------------------------------------------------------------------\n");
         for(BoatFactFields f: BoatFactFields.values()){
             String pre = "";
             for(String fn: f.fieldName){
