@@ -4,12 +4,8 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
-import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import org.elsquatrecaps.autonewsextractor.dataextractor.parser.MainAutoNewsExtractorParser;
 import org.elsquatrecaps.autonewsextractor.error.AutoNewsRuntimeException;
 import org.elsquatrecaps.autonewsextractor.informationunitbuilder.reader.InfromationUnitBuilderProxyClass;
@@ -20,8 +16,6 @@ import org.elsquatrecaps.autonewsextractor.targetfragmentbreaker.cutter.TargetFr
 import org.elsquatrecaps.autonewsextractor.tools.configuration.AutoNewsExtractorConfiguration;
 import org.elsquatrecaps.utilities.tools.Callback;
 import org.elsquatrecaps.utilities.tools.Pair;
-import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
@@ -76,11 +70,13 @@ public class BoatFactExtractor {
                         }, BoatFactFields.getCurrentModelVersion());
                         processCallback.call(new Pair<>(extractDataList, i));
                     }
-                    //save file
-                    Files.writeString(
-                        Paths.get((String) configuration.getAttr("parser_config_json_file")), 
-                        jsonConfig.toString(4)
-                    );
+                    if(r.equals(BoatFactVersionUpdater.BoatFactVersionUpdaterResponse.JSON_UPDATED) || r.equals(BoatFactVersionUpdater.BoatFactVersionUpdaterResponse.JSON_UPDATED_WITH_WARNIGS)){
+                        //save file
+                        Files.writeString(
+                            Paths.get((String) configuration.getAttr("parser_config_json_file")), 
+                            jsonConfig.toString(4)
+                        );
+                    }
                 }catch(RuntimeException ex){
                     //raload
                     jsc = Files.readString(Paths.get((String) configuration.getAttr("parser_config_json_file")));
