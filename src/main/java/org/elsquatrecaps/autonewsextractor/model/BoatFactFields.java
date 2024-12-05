@@ -122,7 +122,7 @@ public enum BoatFactFields{
     public static String getFieldInformation(){
         StringBuilder sb = new StringBuilder();
         sb.append("======================================================================\n");
-        sb.append(java.util.ResourceBundle.getBundle("org/elsquatrecaps/autonewsextractor/model/BoatFactFields").getString("CURRENT_VERSION_HEADER"));
+        sb.append(java.util.ResourceBundle.getBundle("BoatFactFieldMessages").getString("CURRENT_VERSION_HEADER"));
         sb.append(getCurrentModelVersion());
         sb.append("\n\n");
         sb.append(getDescriptionOfFields());
@@ -135,9 +135,9 @@ public enum BoatFactFields{
         StringBuilder sb = new StringBuilder();
         String pre = "----------------------------------------------------------------------\n";
         sb.append("======================================================================\n");
-        sb.append(java.util.ResourceBundle.getBundle("org/elsquatrecaps/autonewsextractor/model/BoatFactFields").getString("FIELD_LIST_HEADER"));
+        sb.append(java.util.ResourceBundle.getBundle("BoatFactFieldMessages").getString("FIELD_LIST_HEADER"));
         sb.append("======================================================================\n");
-        sb.append(java.util.ResourceBundle.getBundle("org/elsquatrecaps/autonewsextractor/model/BoatFactFields").getString("COLUMNS_HEADER"));
+        sb.append(java.util.ResourceBundle.getBundle("BoatFactFieldMessages").getString("COLUMNS_HEADER"));
         for(BoatFactFields f: BoatFactFields.values()){
             sb.append(pre);
             sb.append(f.toString());                
@@ -153,9 +153,9 @@ public enum BoatFactFields{
     public static String getChangeOfVersions(){
         StringBuilder sb = new StringBuilder();
         sb.append("======================================================================\n");
-        sb.append(java.util.ResourceBundle.getBundle("org/elsquatrecaps/autonewsextractor/model/BoatFactFields").getString("CHANGES_LIST_HEADER"));
+        sb.append(java.util.ResourceBundle.getBundle("BoatFactFieldMessages").getString("CHANGES_LIST_HEADER"));
         sb.append("======================================================================\n");
-        sb.append(java.util.ResourceBundle.getBundle("org/elsquatrecaps/autonewsextractor/model/BoatFactFields").getString("COLUMNS_OF_CHANGES_HEADER"));
+        sb.append(java.util.ResourceBundle.getBundle("BoatFactFieldMessages").getString("COLUMNS_OF_CHANGES_HEADER"));
         sb.append("----------------------------------------------------------------------\n");
         for(BoatFactFields f: BoatFactFields.values()){
             String pre = "";
