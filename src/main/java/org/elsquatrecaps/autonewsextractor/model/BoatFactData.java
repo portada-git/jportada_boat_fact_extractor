@@ -10,7 +10,7 @@ public class BoatFactData extends MutableNewsExtractedData{
     }
 
     public String getFactType(){
-        return get(BoatFactFields.FACT_TYPE.toString());
+        return get(BoatFactFields.NEWS_SECTION.toString());
     }
     
     public String getDepartureDate() {
@@ -23,16 +23,16 @@ public class BoatFactData extends MutableNewsExtractedData{
     
     public String getVoyageDuration(){
         return String.format("%s %s", 
-                get(BoatFactFields.TRAVEL_TIME_DURATION.toString()), 
-                get(BoatFactFields.TRAVEL_TIME_UNIT_DURATION.toString()));
+                get(BoatFactFields.TRAVEL_DURATION_VALUE.toString()), 
+                get(BoatFactFields.TRAVEL_DURATION_UNIT.toString()));
     }
     
     public String getVoyageDurationValue(){
-        return get(BoatFactFields.TRAVEL_TIME_DURATION.toString());
+        return get(BoatFactFields.TRAVEL_DURATION_VALUE.toString());
     }
     
     public String getVoyageDurationUnit(){
-        return get(BoatFactFields.TRAVEL_TIME_UNIT_DURATION.toString());
+        return get(BoatFactFields.TRAVEL_DURATION_UNIT.toString());
     }
     
     public String getOrigin(){
@@ -49,8 +49,8 @@ public class BoatFactData extends MutableNewsExtractedData{
     }
 
     public String getShipTonnage() {
-        //return String.format("%s %s", get(BoatFactFields.SHIP_TONS), get("ship_tonnage_unit"));
-        return get(BoatFactFields.SHIP_TONS.toString());
+        //return String.format("%s %s", get(BoatFactFields.SHIP_TONS_CAPACITY), get("ship_tonnage_unit"));
+        return get(BoatFactFields.SHIP_TONS_CAPACITY.toString());
     }
 
     public String getShipFlag() {
@@ -58,15 +58,15 @@ public class BoatFactData extends MutableNewsExtractedData{
     }
 
     public String getMasterName() {
-        return get(BoatFactFields.SHIP_MASTER_NAME.toString());
+        return get(BoatFactFields.MASTER_NAME.toString());
     }
 
     public String getMasterRole() {
-        return get(BoatFactFields.SHIP_MASTER_ROLE.toString());
+        return get(BoatFactFields.MASTER_ROLE.toString());
     }
 
     public String getCargoInformationList() {
-        return get(BoatFactFields.SHIP_CARGO_LIST.toString());
+        return get(BoatFactFields.CARGO_LIST.toString());
     }
 
     public ShipCargoInfo getCargoInformation(int id) {
@@ -94,23 +94,23 @@ public class BoatFactData extends MutableNewsExtractedData{
     }
     
     public String getArrivalMoment(){
-        return get(BoatFactFields.TRAVEL_ARRIVAL_MOMENT_VALUE.toString());
+        return get(BoatFactFields.TRAVEL_ARRIVAL_MOMENT.toString());
     }
 
     public String getShipAgent(){
-        return get(BoatFactFields.SHIP_AGENT.toString());
+        return get(BoatFactFields.SHIP_AGENT_NAME.toString());
     }
 
     public String getShipCrew(){
-        return get(BoatFactFields.SHIP_CREW.toString());
+        return get(BoatFactFields.CREW_NUMBER.toString());
     }
 
     public String getShipIsInQuarantine(){
-        return get(BoatFactFields.SHIP_NEED_QUARANTINE.toString());
+        return get(BoatFactFields.QUARANTINE.toString());
     }
 
     public String getShipHasForcedArrival(){
-        return get(BoatFactFields.SHIP_FORCED_ARRIVAL.toString());
+        return get(BoatFactFields.FORCED_ARRIVAL.toString());
     }
     
 //    public String getAllDataAsJson(){

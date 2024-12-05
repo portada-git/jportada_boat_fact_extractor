@@ -3,7 +3,6 @@ package org.elsquatrecaps.portada.boatfactextractor;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import org.elsquatrecaps.autonewsextractor.error.AutoNewsRuntimeException;
 import org.elsquatrecaps.autonewsextractor.model.BoatFactFields;
@@ -128,7 +127,7 @@ public class BoatFactExtractorMainClass {
             }
             if(infoType.indexOf('D')>-1){
                 System.out.print(sep);
-                System.out.println(BoatFactFields.getFieldDespcription());
+                System.out.println(BoatFactFields.getDescriptionOfFields());
                 sep = "----------------------------------------------------------------------\n";
             }
             if(infoType.indexOf('C')>-1){

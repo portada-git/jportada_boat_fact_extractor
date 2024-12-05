@@ -7,11 +7,11 @@ package org.elsquatrecaps.autonewsextractor.model;
 public class ShipCargoInfo extends MutableNewsExtractedData{
 
     public String getMerchant(){
-        return get(BoatFactFields.CARGO_MERCHANT.toString());
+        return get(BoatFactFields.CARGO_MERCHANT_NAME.toString());
     }
 
     public String getProduct(){
-        return get(BoatFactFields.CARGO_PRODUCT.toString());
+        return get(BoatFactFields.CARGO_COMMODITY.toString());
     }
     
     public String getQuantity(){
@@ -23,26 +23,26 @@ public class ShipCargoInfo extends MutableNewsExtractedData{
     }
     
     public String getOrigin(){
-        return get(BoatFactFields.CARGO_ORIGIN.toString());
+        return get(BoatFactFields.CARGO_PORT_ORIGIN.toString());
     }
     
     public String getDestination(){
-        return get(BoatFactFields.CARGO_DESTINATION.toString());
+        return get(BoatFactFields.CARGO_PORT_DESTINATION.toString());
     }
     
     @Override
     public String toString() {
         String ret = String.format("%s:%s, %s:%s, %s:%s, %s:%s", 
-                BoatFactFields.CARGO_MERCHANT, getMerchant(), 
-                BoatFactFields.CARGO_PRODUCT, getProduct(),
+                BoatFactFields.CARGO_MERCHANT_NAME, getMerchant(), 
+                BoatFactFields.CARGO_COMMODITY, getProduct(),
                 BoatFactFields.CARGO_QUANTITY, getQuantity(),
                 BoatFactFields.CARGO_UNIT, getUnit()
         );
         if(!getOrigin().isEmpty()){
-            ret = ret.concat(String.format(", %s:%s", BoatFactFields.CARGO_ORIGIN, getOrigin()));
+            ret = ret.concat(String.format(", %s:%s", BoatFactFields.CARGO_PORT_ORIGIN, getOrigin()));
         }
         if(!getDestination().isEmpty()){
-            ret = ret.concat(String.format(", %s:%s", BoatFactFields.CARGO_DESTINATION, getDestination()));
+            ret = ret.concat(String.format(", %s:%s", BoatFactFields.CARGO_PORT_DESTINATION, getDestination()));
         }
         return ret;
     }
