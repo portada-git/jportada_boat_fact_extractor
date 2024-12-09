@@ -2,14 +2,19 @@ package org.elsquatrecaps.portada.boatfactextractor;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.elsquatrecaps.autonewsextractor.error.AutoNewsRuntimeException;
 import org.elsquatrecaps.autonewsextractor.model.BoatFactFields;
 import org.elsquatrecaps.autonewsextractor.model.NewsExtractedData;
 import org.elsquatrecaps.autonewsextractor.tools.configuration.AutoNewsExtractorConfiguration;
 import org.elsquatrecaps.autonewsextractor.tools.formatter.BoatFactCsvFormatter;
 import org.elsquatrecaps.autonewsextractor.tools.formatter.JsonFileFormatterForExtractedData;
+import org.json.JSONObject;
 
 /**
  *
@@ -76,14 +81,31 @@ public class BoatFactExtractorMainClass {
             JsonFileFormatterForExtractedData<NewsExtractedData> formatter = new JsonFileFormatterForExtractedData<>(param.getFirst(), true);
             String fn = String.format("%s_%s",config.getOutputFile(), config.getParseModel()[param.getLast()]);
             formatter.toFile(fn);
-            BoatFactCsvFormatter csvFormatter = new BoatFactCsvFormatter();
-            List d = param.getFirst();
-            csvFormatter.format(d).toFile(fn);
+            JSONObject csvParams = readConfigCsv(config, param.getLast());
+            if(csvParams!=null){
+                BoatFactCsvFormatter csvFormatter = new BoatFactCsvFormatter();
+                List d = param.getFirst();
+                csvFormatter.configHeaderFields(csvParams).format(d).toFile(fn);
+            }
             return null;
         }).initInfoCallback((param) -> {
             System.out.println(param);
             return null;
         }).extract();
+    }
+    
+    private JSONObject readConfigCsv(AutoNewsExtractorConfiguration configuration, int parserId){
+        JSONObject ret = null;
+        JSONObject jsonCgf = null;          
+        try {
+            String jsc = Files.readString(Paths.get((String) configuration.getAttr("parser_config_json_file")));
+            jsonCgf = new JSONObject(jsc);
+            JSONObject parser = jsonCgf.optJSONObject(configuration.getParseModel()[parserId]);
+            if(parser!=null){            
+                ret = parser.optJSONObject("csv_view");
+            }
+        } catch (IOException ex) {}
+        return ret;    
     }
     
     private void buildInformationUnitsCommand(String odir, AutoNewsExtractorConfiguration config){
