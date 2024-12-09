@@ -8,6 +8,7 @@ import org.elsquatrecaps.autonewsextractor.error.AutoNewsRuntimeException;
 import org.elsquatrecaps.autonewsextractor.model.BoatFactFields;
 import org.elsquatrecaps.autonewsextractor.model.NewsExtractedData;
 import org.elsquatrecaps.autonewsextractor.tools.configuration.AutoNewsExtractorConfiguration;
+import org.elsquatrecaps.autonewsextractor.tools.formatter.BoatFactCsvFormatter;
 import org.elsquatrecaps.autonewsextractor.tools.formatter.JsonFileFormatterForExtractedData;
 
 /**
@@ -73,7 +74,11 @@ public class BoatFactExtractorMainClass {
         BoatFactExtractor boatFactExtractor = new BoatFactExtractor();
         boatFactExtractor.init(config).initProcessCallback((param) -> {
             JsonFileFormatterForExtractedData<NewsExtractedData> formatter = new JsonFileFormatterForExtractedData<>(param.getFirst(), true);
-            formatter.toFile(String.format("%s_%s",config.getOutputFile(), config.getParseModel()[param.getLast()]));
+            String fn = String.format("%s_%s",config.getOutputFile(), config.getParseModel()[param.getLast()]);
+            formatter.toFile(fn);
+            BoatFactCsvFormatter csvFormatter = new BoatFactCsvFormatter();
+            List d = param.getFirst();
+            csvFormatter.format(d).toFile(fn);
             return null;
         }).initInfoCallback((param) -> {
             System.out.println(param);

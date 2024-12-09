@@ -9,7 +9,7 @@ public class BoatFactData extends MutableNewsExtractedData{
         super(d.getExtractedData());
     }
 
-    public String getFactType(){
+    public String getNewsSection(){
         return get(BoatFactFields.NEWS_SECTION.toString());
     }
     
@@ -35,7 +35,7 @@ public class BoatFactData extends MutableNewsExtractedData{
         return get(BoatFactFields.TRAVEL_DURATION_UNIT.toString());
     }
     
-    public String getOrigin(){
+    public String getDeparturePort(){
         return get(BoatFactFields.TRAVEL_DEPARTURE_PORT.toString());
     }
     
@@ -125,7 +125,7 @@ public class BoatFactData extends MutableNewsExtractedData{
         stb.append("\n Original text: ");
         stb.append(this.getParsedText());
         stb.append("\n departrure harbor: ");
-        stb.append(this.getOrigin());
+        stb.append(this.getDeparturePort());
         if(this.hasPortOfCalls()){
             stb.append(", route harbors: ");
             stb.append(String.join(", ", this.getPortOfCallList()));

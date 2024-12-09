@@ -16,7 +16,6 @@ import org.elsquatrecaps.autonewsextractor.model.PublicationInfo;
 import org.elsquatrecaps.autonewsextractor.tools.configuration.AutoNewsExtractorConfiguration;
 import org.elsquatrecaps.autonewsextractor.tools.formatter.BoatFactCsvFormatter;
 import org.elsquatrecaps.autonewsextractor.tools.formatter.JsonFileFormatterForExtractedData;
-import org.json.JSONArray;
 import org.json.JSONObject;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.AfterAll;
@@ -170,9 +169,9 @@ public class RegexPartialExtractorParserTest {
         JsonFileFormatterForExtractedData ff = new JsonFileFormatterForExtractedData(result);
         System.out.println(ff.toString());
         BoatFactCsvFormatter csvf = new BoatFactCsvFormatter();
-        JSONArray header = instance.getFieldsProperties();
-        System.out.println(csvf.configHeaderFileds(header).format(result).toString());
-        csvf.configHeaderFileds(header).format(result).toFile("sortida.csv");
+        JSONObject header = instance.getCsvProperties(0);
+        System.out.println(csvf.configHeaderFields(header).format(result).toString());
+        csvf.configHeaderFields(header).format(result).toFile("sortida.csv");
         assertEquals(21, result.size());
         // TODO review the generated test code and remove the default call to fail.
     }    
