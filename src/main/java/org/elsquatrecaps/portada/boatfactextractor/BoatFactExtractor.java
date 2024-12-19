@@ -8,12 +8,15 @@ import java.util.ArrayList;
 import java.util.List;
 import org.elsquatrecaps.autonewsextractor.dataextractor.parser.MainAutoNewsExtractorParser;
 import org.elsquatrecaps.autonewsextractor.error.AutoNewsRuntimeException;
-import org.elsquatrecaps.autonewsextractor.informationunitbuilder.reader.InfromationUnitBuilderProxyClass;
+import org.elsquatrecaps.autonewsextractor.informationunitbuilder.reader.ImplInformationUnitDataParamsForCallback;
+import org.elsquatrecaps.autonewsextractor.informationunitbuilder.reader.InformationUnitBuilder.InformationUnitDataParamsFromFilesForCallback;
 import org.elsquatrecaps.autonewsextractor.model.BoatFactFields;
 import org.elsquatrecaps.autonewsextractor.model.NewsExtractedData;
 import org.elsquatrecaps.autonewsextractor.model.PublicationInfo;
 import org.elsquatrecaps.autonewsextractor.targetfragmentbreaker.cutter.TargetFragmentCutterProxyClass;
 import org.elsquatrecaps.autonewsextractor.tools.configuration.AutoNewsExtractorConfiguration;
+import static org.elsquatrecaps.portada.boatfactextractor.BoatFactVersionUpdater.BoatFactVersionUpdaterResponse.JSON_IS_NOT_UPDATABLE;
+import static org.elsquatrecaps.portada.boatfactextractor.BoatFactVersionUpdater.BoatFactVersionUpdaterResponse.UNKNOWN_VERSION;
 import org.elsquatrecaps.utilities.tools.Callback;
 import org.elsquatrecaps.utilities.tools.Pair;
 import org.json.JSONObject;
@@ -22,18 +25,19 @@ import org.json.JSONObject;
  *
  * @author josepcanellas
  */
-public class BoatFactExtractor {
+public class BoatFactExtractor extends BoatFactReader{
     AutoNewsExtractorConfiguration configuration;
-    Callback<Pair<List<NewsExtractedData>, Integer>, Void> processCallback;
+    Callback<Pair<List<NewsExtractedData>, Integer>, Void> processListDataCallback;
     Callback<String, Void> infoCallback;
     
-    public BoatFactExtractor init(AutoNewsExtractorConfiguration config){
+    public BoatFactExtractor initConfig(AutoNewsExtractorConfiguration config){
         configuration = config;
+        super.initInfoUnitBuilderConfig(config);
         return this;
     }
     
-    public BoatFactExtractor initProcessCallback(Callback<Pair<List<NewsExtractedData>, Integer>, Void> callback){
-        processCallback = callback;
+    public BoatFactExtractor initProcessListDataCallback(Callback<Pair<List<NewsExtractedData>, Integer>, Void> callback){
+        processListDataCallback = callback;
         return this;
     }
     
@@ -43,8 +47,8 @@ public class BoatFactExtractor {
     }
     
     public void extract(){
-        final List<NewsExtractedData> extractDataList = new ArrayList<>();
-        InfromationUnitBuilderProxyClass builder = InfromationUnitBuilderProxyClass.getInstance("file_name", "portada_file_name", configuration);
+        List<NewsExtractedData> extractDataList;
+//        InfromationUnitBuilderProxyClass builder = InfromationUnitBuilderProxyClass.getInstance("file_name", "portada_file_name", configuration);
         TargetFragmentCutterProxyClass cutter = TargetFragmentCutterProxyClass.getInstance(configuration.getFragmentBreakerApproach(), configuration);
         MainAutoNewsExtractorParser parser = MainAutoNewsExtractorParser.getInstance(configuration);  
         JSONObject jsonConfig;
@@ -57,18 +61,23 @@ public class BoatFactExtractor {
                     int parseModels = configuration.getParseModel().length;
                     for(int i=0; i<parseModels; i++){
                         final int id = i;
-                        extractDataList.clear();                
-                        builder.createAndProcessEachInformationUnitFiles((param) -> {
-                            try{
-                                String text = param.getInformationUnitText();
-                                text = cutter.init(id).getTargetTextFromText(text);                    
-                                extractDataList.addAll(parser.parseFromString(text, id, param.getPublicationInfo()));
-                            }catch(RuntimeException ex){
-                                infoCallback.call(ex.getMessage());
+                        extractDataList = this.processFiles(
+                            configuration.getOriginDir(), 
+                            configuration.getFileExtension(), 
+                            id,
+                            (param) -> {
+                                List<NewsExtractedData> l = null;
+                                try{
+                                    String text = param.getTextToParse();
+                                    text = cutter.init(id).getTargetTextFromText(text);                    
+                                    l = parser.parseFromString(text, param.getParserId(), param.getPublicationInfo());
+                                }catch(RuntimeException ex){
+                                    infoCallback.call(ex.getMessage());
+                                }
+                                return l;
                             }
-                            return null;
-                        }, BoatFactFields.getCurrentModelVersion());
-                        processCallback.call(new Pair<>(extractDataList, i));
+                        );
+                        processListDataCallback.call(new Pair<>(extractDataList, i));
                     }
                     if(r.equals(BoatFactVersionUpdater.BoatFactVersionUpdaterResponse.JSON_UPDATED) || r.equals(BoatFactVersionUpdater.BoatFactVersionUpdaterResponse.JSON_UPDATED_WITH_WARNIGS)){
                         //save file
@@ -87,7 +96,6 @@ public class BoatFactExtractor {
                     }else{
                         infoCallback.call(ex.getMessage());
                     }
-                    ex.printStackTrace();
                 }
             }else{
                 String m;
@@ -102,7 +110,6 @@ public class BoatFactExtractor {
                         m = "Unknown error trying to update the config JSON";
                 }
                 infoCallback.call(m);
-
             }
         }catch (IOException ex) {
             String filename = configuration.getAttr("parser_config_json_file");
@@ -161,4 +168,16 @@ public class BoatFactExtractor {
         }  
         return ret;
     }
+    
+    public static class InformationUnitInfo extends  ImplInformationUnitDataParamsForCallback implements InformationUnitDataParamsFromFilesForCallback{
+        
+        public InformationUnitInfo(PublicationInfo publicationInfo, String text, String name, List<String> filesOrigin, float completedRatio) {
+            super(publicationInfo, text, name, filesOrigin, completedRatio);
+        }
+
+        public InformationUnitInfo(Exception ex) {
+            super(ex);
+        }        
+    }
+    
 }

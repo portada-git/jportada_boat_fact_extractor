@@ -77,7 +77,7 @@ public class BoatFactExtractorMainClass {
     
     private void extract(AutoNewsExtractorConfiguration config){
         BoatFactExtractor boatFactExtractor = new BoatFactExtractor();
-        boatFactExtractor.init(config).initProcessCallback((param) -> {
+        boatFactExtractor.initConfig(config).initProcessListDataCallback((param) -> {
             JsonFileFormatterForExtractedData<NewsExtractedData> formatter = new JsonFileFormatterForExtractedData<>(param.getFirst(), true);
             String fn = String.format("%s_%s",config.getOutputFile(), config.getParseModel()[param.getLast()]);
             formatter.toFile(fn);
@@ -126,7 +126,7 @@ public class BoatFactExtractorMainClass {
     private void extractOnlyCommand(AutoNewsExtractorConfiguration config){
         List<NewsExtractedData> result = new ArrayList<>();
         BoatFactExtractor boatFactExtractor = new BoatFactExtractor();
-        boatFactExtractor.init(config);
+        boatFactExtractor.initConfig(config);
         try{
             int models = config.getParseModel().length;
             for(int i=0; i<models; i++){

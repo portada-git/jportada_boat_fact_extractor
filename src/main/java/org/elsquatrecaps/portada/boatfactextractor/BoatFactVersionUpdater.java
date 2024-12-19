@@ -4,6 +4,8 @@
  */
 package org.elsquatrecaps.portada.boatfactextractor;
 
+import java.util.HashMap;
+import java.util.Map;
 import org.elsquatrecaps.autonewsextractor.dataextractor.calculators.DataExtractorCalculatorProxyClass;
 import org.elsquatrecaps.autonewsextractor.model.BoatFactFields;
 import org.json.JSONArray;
@@ -246,9 +248,25 @@ public class BoatFactVersionUpdater extends BoatFactVersionVerifier {
         BoatFactVersionUpdaterResponse(int v){
             status=v;
         }
+        transient 
+        private static Map<Integer, BoatFactVersionUpdaterResponse> map = new HashMap<>();
+        static {
+            for(BoatFactVersionUpdaterResponse r: BoatFactVersionUpdaterResponse.values()){
+                map.put(r.status, r);
+            }
+        }
         
-        boolean isError(){
+        
+        public static BoatFactVersionUpdaterResponse getFromStatus(int status){
+            return map.get(status);
+        }
+        
+        public boolean isError(){
             return status<0;
+        }
+        
+        public int getStatus(){
+            return status;
         }
     }
 }
