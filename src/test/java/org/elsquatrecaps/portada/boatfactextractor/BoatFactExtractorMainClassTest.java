@@ -50,12 +50,12 @@ public class BoatFactExtractorMainClassTest {
         System.out.println("main");
         String[] args = {
 //            "cut_test", 
-            "extract",
+            "information_unit_test",
             "-c", "config/conf_db/init.properties", 
 //            "-d", "resultats/iu", 
-            "-d", "text_data_db",
+            "-d", "text_data_db/test1900",
 //            "-o", "resultats/cut"};
-            "-o", "resultats/prova"};
+            "-o", "resultats/provaTest1900"};
 //        String[] args = {"field_info", "-i", "VC"};
         BoatFactExtractorMainClass.main(args);
         // TODO review the generated test code and remove the default call to fail.
