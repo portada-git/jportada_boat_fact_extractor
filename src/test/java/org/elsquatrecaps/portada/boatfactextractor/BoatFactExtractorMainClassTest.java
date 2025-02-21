@@ -50,7 +50,8 @@ public class BoatFactExtractorMainClassTest {
         System.out.println("main");
         String[] args = {
 //            "cut_test", 
-            "information_unit_test",
+//            "information_unit_test",
+            "extract",
             "-c", "config/conf_db/init.properties", 
 //            "-d", "resultats/iu", 
             "-d", "text_data_db/test1900",

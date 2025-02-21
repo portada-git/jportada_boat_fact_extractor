@@ -25,6 +25,18 @@ public class RegexBuilderTest {
     public RegexBuilderTest() {
     }
     
+    public static void main(String[] args){
+        setUpClass();
+        RegexBuilderTest test = new RegexBuilderTest();
+        
+        test.setUp();
+        test.testGetInstance_RegexConfiguration();
+        test.tearDown();
+                
+        tearDownClass();
+    }
+    
+    
     @BeforeAll
     public static void setUpClass() {
         String[] args ={
@@ -66,7 +78,7 @@ public class RegexBuilderTest {
         System.out.println("getInstance");
         RegexBuilder builder = RegexBuilder.getInstance(configuration);
         String p = builder.buildRegex("flag").pattern();
-        assertEquals("(?:(?:^(.*(?:(?:E[mn]b.*[eo][s5])|(?:[EA][mn].{3,5}c[i¡Il1][oec]n[eosc]s)|(?:[EA]{2,3}barca.{2,4}nes)|(?:.{1,3}barc.{1,2}c[i¡Il1][oec]n[eosc].)|(?:.mbar.{1,3}c[i¡Il1][oec]n[eosc].)) (?:(?:(?:(?:[|i¡l][|i¡l])|(?:[UHN]))[eoa]g[aoeu]d..)|(?:.{4,6}adas)) .{2,7} p[uo][eo]rt[oe].*)\\n+((?:(?:(?:(?:[MmNn]|(?:[ÚU]l?))[eco*][rft](?:(?:[ce][an][bnu][tl][eco*])|(?:ca[nbu][lt][lt]-)))[s5;}]?)|(?:M.r.ant[eoa][s5]?)|(?:.{1,3}rcant[aeo][s5]?)|(?:D. g[uo][aeo](?:(?:[rn][rn])|(?:m))[aeo])|(?:))) (.*)\\.?$)|(?:^( )?((?:(?:(?:(?:[MmNn]|(?:[ÚU]l?))[eco*][rft](?:(?:[ce][an][bnu][tl][eco*])|(?:ca[nbu][lt][lt]-)))[s5;}]?)|(?:M.r.ant[eoa][s5]?)|(?:.{1,3}rcant[aeo][s5]?)|(?:D. g[uo][aeo](?:(?:[rn][rn])|(?:m))[aeo])|(?:))) (.*)\\.?\\n+)|(?:^( )?([iIl1í][dD].{0,2}) ?(.{4,20})\\.?\\n+(?=De))|(?:^( )?([iIl1í][dD].{0,2}) (.{4,15})\\.?\\n+)|(?:^( )?( )?([^\\d\\W]{5,15})\\.?\\n+))", p);
+        assertEquals("(?:(?:^(.*(?:(?:E[mnMN][bB].*[Eeo][Ss5])|(?:[EA][mnMN].{3,5}[cC][i¡Il1][oOec][nN][Eeosc][sS])|(?:[EA]{2,3}[bB][aA][rR][cC][aA].{2,4}[Nn][Ee][Ss])|(?:.{1,3}[Bb][Aa][Rr][Cc].{1,2}[Cc][i¡Il1][oOec][nN][Eeosc].)|(?:.[Mm][Bb][aA][Rr].{1,3}[Cc][i¡Il1][Ooec][nN][Eeosc].)) (?:(?:(?:(?:[|i¡l][|i¡l])|(?:[UHN]))[eoa]g[aoeu]d..)|(?:(?:(?:[|Ll][|Ll])|(?:[UHN]))EG[AÁ]D..)|(?:.{4,6}adas)|(?:.{4,6}ADAS)) .{2,7} (?:(?:p[uo][eo]rt[oe])|(?:[PB]UE[RN]T[OD])).*)\\n+((?:(?:(?:(?:[MmNn]|(?:[ÚU]l?))[eco*][rft](?:(?:[ce][an][bnu][tl][eco*])|(?:ca[nbu][lt][lt]-)))[s5;}]?)|(?:M.r.ant[eoa][s5]?)|(?:.{1,3}rcant[aeo][s5]?)|(?:D. g[uo][aeo](?:(?:[rn][rn])|(?:m))[aeo])|(?:))) (.*)\\.?$)|(?:^( )?((?:(?:(?:(?:[MmNn]|(?:[ÚU]l?))[eco*][rft](?:(?:[ce][an][bnu][tl][eco*])|(?:ca[nbu][lt][lt]-)))[s5;}]?)|(?:M.r.ant[eoa][s5]?)|(?:.{1,3}rcant[aeo][s5]?)|(?:D. g[uo][aeo](?:(?:[rn][rn])|(?:m))[aeo])|(?:))) (.*)\\.?\\n+)|(?:^( )?([iIl1í][dD].{0,2}) ?(.{4,20})\\.?\\n+(?=De))|(?:^( )?([iIl1í][dD].{0,2}) (.{4,15})\\.?\\n+)|(?:^( )?( )?([^\\d\\W]{5,15})\\.?\\n+))", p);
         p = builder.buildRegex("is_page_number").pattern();
         assertEquals("^\\s*(?:[\\d(IlOoSt»]){0,4}\\n(.*)", p);
 //        // TODO review the generated test code and remove the default call to fail.

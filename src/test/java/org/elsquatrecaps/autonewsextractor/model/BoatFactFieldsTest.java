@@ -12,7 +12,7 @@ import org.junit.Test;
  */
 public class BoatFactFieldsTest {
     
-     public static void main(String[] args){
+    public static void main(String[] args){
         setUpClass();
         BoatFactFieldsTest test = new BoatFactFieldsTest();
         
