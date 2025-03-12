@@ -68,7 +68,9 @@ public class BoatFactReader {
                     param.getCompletedRatio()
                 )
             );
-            extractDataList.addAll(data);
+            if(data!=null){
+                extractDataList.addAll(data);
+            }
             return null;
         }, originDir, extension, BoatFactFields.getCurrentModelVersion());
         return extractDataList;

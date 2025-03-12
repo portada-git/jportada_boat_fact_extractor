@@ -4,7 +4,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 /**
  *
@@ -48,6 +51,7 @@ public enum BoatFactFields{
     //ship_cargo
     CARGO_LIST("cargo_list", "SHIP_CARGO_LIST"),
     CARGO_MERCHANT_NAME("cargo_merchant_name", "CARGO_MERCHANT"),
+    CARGO,
     CARGO_COMMODITY("cargo_commodity","CARGO_TYPE"),
     CARGO_QUANTITY("cargo_quantity","cargo_value"),
     CARGO_UNIT,
@@ -69,7 +73,10 @@ public enum BoatFactFields{
     INFO_PORT_DEPARTURE,
     CARGO_INFO_DEPARTURE_DATE,
     INFO_PORT_DESTINATION,
-    INFO_BEHIND,    
+    INFO_BEHIND,   
+    //Others
+    AI_OBSERVATIONS,
+    ERROR,
     ;
     
     private static final String CURRENT_MODEL_VERSION="boat_fact-00.00.01";
@@ -168,11 +175,39 @@ public enum BoatFactFields{
         }
         return sb.toString();
     }
+    
+    public static JSONObject getFieldDescriptionsForAIPrompt(JSONArray fields, String language, String country){
+        JSONObject ret = new JSONObject();
+        for(int i=0; i<fields.length(); i++){
+            ret.put(fields.getString(i), getValue(fields.getString(i)).getFieldDescriptionForAIPrompt(language, country));
+        }
+        return ret;
+    }
 
     /**
      * @return the fieldDescription
      */
     public String getFieldDescription() {
         return descriptionMessages.getString(this.toString().toUpperCase().concat("_DESC"));
+    }
+    
+    public String getFieldDescriptionForAIPrompt(String language, String country){
+        Locale loc;
+        if(country != null && !country.isBlank() && language!=null && !language.isBlank()){
+            loc = new Locale(language, country);
+        }else if(language!=null && !language.isBlank()){
+            loc = new Locale(language);
+        }else{
+            loc = Locale.getDefault();
+        }
+        return java.util.ResourceBundle.getBundle("BoatFactFieldDescForOpenai", new Locale(language, country)).getString(this.toString().toUpperCase().concat("_DESC"));
+    }
+    
+    public String getFieldDescriptionForAIPrompt(String language){
+        return getFieldDescriptionForAIPrompt(language, null);
+    }
+
+    public String getFieldDescriptionForAIPrompt(){
+        return getFieldDescriptionForAIPrompt(null, null);
     }
 }

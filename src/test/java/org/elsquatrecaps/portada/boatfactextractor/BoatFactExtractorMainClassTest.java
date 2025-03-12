@@ -52,11 +52,12 @@ public class BoatFactExtractorMainClassTest {
 //            "cut_test", 
 //            "information_unit_test",
             "extract",
-            "-c", "config/conf_db/init.properties", 
+            "-c", "config/conf_lp/init.properties", 
 //            "-d", "resultats/iu", 
-            "-d", "text_data_db/test1900",
+            "-d", "text_data_lp/prova_lp",
 //            "-o", "resultats/cut"};
-            "-o", "resultats/provaTest1900"};
+            "-o", "resultats/prova_lp",
+            "-cc", "bcn"};
 //        String[] args = {"field_info", "-i", "VC"};
         BoatFactExtractorMainClass.main(args);
         // TODO review the generated test code and remove the default call to fail.

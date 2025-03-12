@@ -7,11 +7,11 @@ import org.elsquatrecaps.autonewsextractor.tools.RegexBuilder;
  * @author josep
  */
 @DataExtractorCalculatorMarkerAnnotation(id = "TimeOfArrivalRelativeToPublicationCalculator")
-public class TimeOfArrivalRelativeToPublicationCalculator extends RegexCalculator<String[], String>{
+public class TimeOfArrivalRelativeToPublicationCalculator extends RegexCalculator<String>{
     public static final int ORIGINAL_TEXT=0;
     @Override
-    public String calculate(String[] params) {
-        String when = params[ORIGINAL_TEXT].replace('\n', ' ');
+    public String calculate(Object[] params) {
+        String when = ((String)params[ORIGINAL_TEXT]).replace('\n', ' ');
         String ret=when;
         if(when.matches(RegexBuilder.getInstance(this.getBasePath(), this.getSearchPath(), this.getVariant()).getStrPatternFromFile("contains_anteayer"))){
             ret = "by";

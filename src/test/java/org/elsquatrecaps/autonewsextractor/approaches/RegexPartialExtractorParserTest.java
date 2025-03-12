@@ -54,7 +54,9 @@ public class RegexPartialExtractorParserTest {
     public static void setUpClass() {
         String[] args ={
             "-c",
-            "config/conf_db/init.properties"
+            "config/conf_db/init.properties",
+            "-cc",
+            "bcn"
         };
         try{
             configuration.parseArgumentsAndConfigure(args);    
@@ -91,7 +93,7 @@ public class RegexPartialExtractorParserTest {
                 + "De Vinaroz en 3 d, laud Tres Amigos, de 23 t., p. C. Roca, con 1000 a. algarrobas á los señores Caralt Matheu y Segarra, 11 pipas aceite, à D. C. Torrens y Miralda, 10 id. á D.-S. Pou, 4 id. á D. E. Beltran y 4 id. á D. J. Verges.\n" 
                 + "De Adra y Denia en 3 d. laud Dolores, de 52 t., p. M. Lopez, con 472 cajas plomo, 212 rollós id., 100 barriles litargirio en hojas y 10 de minio á D. P. Marsal, 18 rollos plomo á D. C. Truyano, 43 bultos trapos y 9 de retazos de papel á la órden.\n" 
                 + "De Seiilla en 24 d. mistico Sevillano, de 72 t., p. J. Bosch, con C00 fanegas trigo, 90 sacos sémola à D. P. Delmases, 66 id. á D. M. Montaña, 30 id. á D. F. Romeva , 268 saquetas lana à D. P. M. Serdá, 26 bultos trapos y cortaduras de papel á D. I. Bomaña y 3089 astas de carnero à la órden.\n" 
-                + "De id., Cádiz y Sta. Pola en 31 d. laud Jóven Eusebio, de 52 t., p. J. Roca, con 212 fanegas trigo y 100 gq. granada á D. B. Solá y Amat, 343 fanegas hahones á D. J. Sirvent, 53 herpiles tropos á dou\n" 
+                + "De id., Cádiz y Sta. Pola en 31 d. laud Jóven Eusebio, de 52 t., p. J. Roca, con 212 fanegas trigo y 100 gq. granada á D. B. Solá y Amat, 343 fanegas hahones á D. J. Sirvent, 53 herpiles tropos á dou" 
                 + "F. Soler, 62 cajas loza á los señores Pichmsan y compañia, 80 saquetas laua à D. 1. Vieta , 192 sacos sémola á D. M. Montaña y 40 barriles tabaco á D. J. Fontanillas.\n" 
                 + "De Cartagena en 11 d. místico Ventura, de 53 t., p. A. Calvet, con 80 a. granada, 13 de trapos y 13 de alpargatas á D. J. Artigas, 71 qq. gualda á D. D. Miralles , 300 de barrilla á la señiora viuda Moré y 900 de mineral à D. M. Camps\n" 
                 + "De Sevilla, Cädiz y Cartagena en 33 d. laud Sau Sebastian, de 43 t., c. D. J. B, Ramon, con 1000 fanegas trigo y 380 de habones á D. S. Servet, y 20 sacos sémola à D. J. Estrany\n" 
@@ -138,7 +140,7 @@ public class RegexPartialExtractorParserTest {
                 + "De Vinaroz en 3 d, laud Tres Amigos, de 23 t., p. C. Roca, con 1000 a. algarrobas á los señores Caralt Matheu y Segarra, 11 pipas aceite, à D. C. Torrens y Miralda, 10 id. á D.-S. Pou, 4 id. á D. E. Beltran y 4 id. á D. J. Verges.\n" 
                 + "De Adra y Denia en 3 d. laud Dolores, de 52 t., p. M. Lopez, con 472 cajas plomo, 212 rollós id., 100 barriles litargirio en hojas y 10 de minio á D. P. Marsal, 18 rollos plomo á D. C. Truyano, 43 bultos trapos y 9 de retazos de papel á la órden.\n" 
                 + "De Seiilla en 24 d. mistico Sevillano, de 72 t., p. J. Bosch, con C00 fanegas trigo, 90 sacos sémola à D. P. Delmases, 66 id. á D. M. Montaña, 30 id. á D. F. Romeva , 268 saquetas lana à D. P. M. Serdá, 26 bultos trapos y cortaduras de papel á D. I. Bomaña y 3089 astas de carnero à la órden.\n" 
-                + "De id., Cádiz y Sta. Pola en 31 d. laud Jóven Eusebio, de 52 t., p. J. Roca, con 212 fanegas trigo y 100 gq. granada á D. B. Solá y Amat, 343 fanegas hahones á D. J. Sirvent, 53 herpiles tropos á dou\n" 
+                + "De id., Cádiz y Sta. Pola en 31 d. laud Jóven Eusebio, de 52 t., p. J. Roca, con 212 fanegas trigo y 100 gq. granada á D. B. Solá y Amat, 343 fanegas hahones á D. J. Sirvent, 53 herpiles tropos á dou" 
                 + "F. Soler, 62 cajas loza á los señores Pichmsan y compañia, 80 saquetas laua à D. 1. Vieta , 192 sacos sémola á D. M. Montaña y 40 barriles tabaco á D. J. Fontanillas.\n" 
                 + "De Cartagena en 11 d. místico Ventura, de 53 t., p. A. Calvet, con 80 a. granada, 13 de trapos y 13 de alpargatas á D. J. Artigas, 71 qq. gualda á D. D. Miralles , 300 de barrilla á la señiora viuda Moré y 900 de mineral à D. M. Camps\n" 
                 + "De Sevilla, Cädiz y Cartagena en 33 d. laud Sau Sebastian, de 43 t., c. D. J. B, Ramon, con 1000 fanegas trigo y 380 de habones á D. S. Servet, y 20 sacos sémola à D. J. Estrany\n" 
@@ -171,7 +173,7 @@ public class RegexPartialExtractorParserTest {
         BoatFactCsvFormatter csvf = new BoatFactCsvFormatter();
         JSONObject header = instance.getCsvProperties(0);
         System.out.println(csvf.configHeaderFields(header).format(result).toString());
-        csvf.configHeaderFields(header).format(result).toFile("sortida.csv");
+        csvf.toFile("sortida.csv");
         assertEquals(21, result.size());
         // TODO review the generated test code and remove the default call to fail.
     }    

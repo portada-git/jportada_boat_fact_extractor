@@ -92,9 +92,11 @@ public class BoatFactExtractor extends BoatFactReader{
                     jsonConfig = new JSONObject(jsc); 
                     List<BoatFactVersionVerifier.BoatFactVersionVerifierResponse> l = BoatFactVersionVerifier.verify(jsonConfig);
                     if(l.size()>1){
-                        infoCallback.call("Error due to version of config json file.\n\n".concat(ex.getMessage())); //TO DO CHANGE THE MESSAGE 
+                        infoCallback.call("Error due to version of config json file.\n\n".concat(ex.getMessage()==null?ex.toString():ex.getMessage())); //TO DO CHANGE THE MESSAGE 
+                        ex.printStackTrace();
                     }else{
-                        infoCallback.call(ex.getMessage());
+                        infoCallback.call(ex.getMessage()==null?ex.toString():ex.getMessage());
+                        ex.printStackTrace();
                     }
                 }
             }else{
