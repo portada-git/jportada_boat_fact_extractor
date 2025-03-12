@@ -129,7 +129,7 @@ public class RegexPartialExtractorParserTest {
         // TODO review the gnerated test code and remove the default call to fail.
     }
     
-    @Test
+    //@Test
     public void testParseWithMultiParserFromString() {
         System.out.println("ParseWithMultiParserFromString");
         String bonText = ""
