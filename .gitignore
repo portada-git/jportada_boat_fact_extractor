@@ -37,5 +37,6 @@ config
 /regex/
 /resultats/
 /text_data_db/
+/text_data_lp/
 /text_data_sm/
 /nbproject/
