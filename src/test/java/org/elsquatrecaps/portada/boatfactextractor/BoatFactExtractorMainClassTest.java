@@ -52,9 +52,9 @@ public class BoatFactExtractorMainClassTest {
 //            "cut_test", 
 //            "information_unit_test",
             "extract",
-            "-c", "config/conf_lp/init.properties", 
+            "-c", "config/conf_db/init.properties", 
 //            "-d", "resultats/iu", 
-            "-d", "text_data_lp/prova_lp",
+            "-d", "text_data_db",
 //            "-o", "resultats/cut"};
             "-o", "resultats/prova_db",
             "-cc", "bcn"};
