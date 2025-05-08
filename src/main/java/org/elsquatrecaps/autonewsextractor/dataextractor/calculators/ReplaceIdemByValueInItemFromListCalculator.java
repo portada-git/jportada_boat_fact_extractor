@@ -21,8 +21,13 @@ public class ReplaceIdemByValueInItemFromListCalculator extends RegexCalculator<
     public JSONArray calculate(Object[] param) {
         JSONArray ret = null;
         if(!isEmptyParam(param[VALUE_TO_CHECK])){
+            JSONArray forReplacing;
             JSONArray toCheck = (JSONArray) param[VALUE_TO_CHECK];
-            JSONArray forReplacing = (JSONArray) param[DEFAULT_VALUE_FOR_REPLACING];
+            if(!isEmptyParam(param[DEFAULT_VALUE_FOR_REPLACING])){
+                forReplacing = (JSONArray) param[DEFAULT_VALUE_FOR_REPLACING];
+            }else{
+                forReplacing = null;
+            }
             JSONObject defaultReplacing = null;
             if(!isEmptyParam(forReplacing)
                     && forReplacing.length()>1 
