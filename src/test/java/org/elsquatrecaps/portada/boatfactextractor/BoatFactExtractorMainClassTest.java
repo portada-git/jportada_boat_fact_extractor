@@ -54,9 +54,9 @@ public class BoatFactExtractorMainClassTest {
             "extract",
             "-c", "config/conf_db/init.properties", 
 //            "-d", "resultats/iu", 
-            "-d", "text_data_db",
+            "-d", "text_data_db/p1",
 //            "-o", "resultats/cut"};
-            "-o", "resultats/prova_db",
+            "-o", "resultats/prova_db_p1",
             "-cc", "bcn"};
 //        String[] args = {"field_info", "-i", "VC"};
         BoatFactExtractorMainClass.main(args);
