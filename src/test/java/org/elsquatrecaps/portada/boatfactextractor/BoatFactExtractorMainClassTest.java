@@ -52,11 +52,13 @@ public class BoatFactExtractorMainClassTest {
 //            "cut_test", 
 //            "information_unit_test",
             "extract",
-            "-c", "config/conf_db/init.properties", 
+            "-c", "config/conf_sm/init.properties", 
+//            "-c", "config/conf_db/init.properties", 
 //            "-d", "resultats/iu", 
-            "-d", "text_data_db/p1",
+//            "-d", "text_data_db/p1",
+            "-d", "../../dades/tests/text",
 //            "-o", "resultats/cut"};
-            "-o", "resultats/prova_db_p1",
+            "-o", "resultats/prova_sm_nikos",
             "-cc", "bcn"};
 //        String[] args = {"field_info", "-i", "VC"};
         BoatFactExtractorMainClass.main(args);
