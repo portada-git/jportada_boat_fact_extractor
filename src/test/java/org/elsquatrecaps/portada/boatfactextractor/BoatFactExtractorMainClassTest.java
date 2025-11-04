@@ -56,7 +56,8 @@ public class BoatFactExtractorMainClassTest {
 //            "-c", "config/conf_db/init.properties", 
 //            "-d", "resultats/iu", 
 //            "-d", "text_data_db/p1",
-            "-d", "../../dades/tests/text",
+//            "-d", "../../dades/tests/text",
+            "-d", "../../dades/tests/nikos_papiclitest",
 //            "-o", "resultats/cut"};
             "-o", "resultats/prova_sm_nikos",
             "-cc", "bcn"};
