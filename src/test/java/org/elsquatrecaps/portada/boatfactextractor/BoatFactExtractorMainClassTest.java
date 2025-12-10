@@ -52,14 +52,15 @@ public class BoatFactExtractorMainClassTest {
 //            "cut_test", 
 //            "information_unit_test",
             "extract",
-            "-c", "config/conf_sm/init.properties", 
-//            "-c", "config/conf_db/init.properties", 
+//            "-c", "config/conf_sm/init.properties", 
+            "-c", "config/conf_db/init.properties", 
 //            "-d", "resultats/iu", 
 //            "-d", "text_data_db/p1",
 //            "-d", "../../dades/tests/text",
-            "-d", "../../dades/tests/nikos_papiclitest",
-//            "-o", "resultats/cut"};
-            "-o", "resultats/prova_sm_nikos",
+//            "-d", "../../dades/tests/nikos_papiclitest",
+            "-d", "../../dades/estadistiques_i_valoracio_extraccio/PerJosepElsInaccessibles",
+            "-o", "resultats/cut",
+//            "-o", "resultats/prova_sm_nikos",
             "-cc", "bcn"};
 //        String[] args = {"field_info", "-i", "VC"};
         BoatFactExtractorMainClass.main(args);
